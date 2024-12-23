@@ -14,5 +14,8 @@ internal class Program
 
         var eagerInstance = EagerSingleton.Instance;
         Console.WriteLine(eagerInstance.GetMessage());
+
+        var lazyInstance = LazySingleton.Instance;
+        Console.WriteLine(lazyInstance.GetMessage());
     }
 }
