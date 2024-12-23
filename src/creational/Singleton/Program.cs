@@ -11,5 +11,8 @@ internal class Program
 
         basicInstance = Basic.GetInstance();
         Console.WriteLine(basicInstance.GetMessage());
+
+        var eagerInstance = EagerSingleton.Instance;
+        Console.WriteLine(eagerInstance.GetMessage());
     }
 }

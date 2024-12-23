@@ -5,7 +5,7 @@ using System;
 /// <summary>
 /// Singleton class that demonstrates the basic implementation of the Singleton pattern.
 /// </summary>
-internal class Basic
+public sealed class Basic
 {
     /// <summary>
     /// The instance of the Singleton class.
@@ -39,7 +39,7 @@ internal class Basic
     /// <summary>
     /// Returns a message with the instance and creation time.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Gets a message string</returns>
     public String GetMessage()
     {
         return _instance!.ToString();
@@ -48,7 +48,7 @@ internal class Basic
     /// <summary>
     /// Returns a string representation of the instance.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>This returns a string with a creation datetime and hash code of this instance.</returns>
     public override string ToString()
     {
         return $"Basic instance: {_instance!.GetHashCode()} Creation Time {_creationTime}";
