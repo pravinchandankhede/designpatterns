@@ -24,5 +24,7 @@ internal class Program
         var lazyOptimized = LazyOptimizedSingleton.Instance;
         Console.WriteLine(lazyOptimized.GetMessage());
 
+        var threadLockInstance = ThreadLockSingleton.Instance;
+        Console.WriteLine(threadLockInstance.GetMessage());
     }
 }
