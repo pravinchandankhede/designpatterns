@@ -14,6 +14,8 @@ Refer the entire implementation [here](https://github.com/pravinchandankhede/des
 1. [Basic](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/Singleton/Basic.cs) This class implements a very basic version of singleton using private constructor and factory method to instanciate the instance.
 2. [Eager](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/Singleton/EagerSingleton.cs) This class implements the eager initialization pattern fro creating singleton objects.
 3. [Lazy](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/Singleton/LazySingleton.cs) This class shows how to utilize the [Lazy<T>](https://learn.microsoft.com/en-us/dotnet/api/system.lazy-1?view=net-9.0) feature of C# to implement  singleton pattern.
+4. [Thread Safe](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/Singleton/ThreadSafeSingleton.cs)
+
 ## Structural Patterns
 These patterns deals with the structure of code and classes. It highlights how different classes interact to form a larger system of classes.
 

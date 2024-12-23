@@ -17,5 +17,8 @@ internal class Program
 
         var lazyInstance = LazySingleton.Instance;
         Console.WriteLine(lazyInstance.GetMessage());
+
+        var threadSafeInstance = ThreadSafeSingleton.Instance;
+        Console.Write(threadSafeInstance.GetMessage());
     }
 }
