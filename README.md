@@ -23,6 +23,8 @@ Refer the entire implementation [here](https://github.com/pravinchandankhede/des
 
 This demonstrates the class [AccountFactory](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/AccountFactory/AccountFactory.cs) which creates instance of [SavingAccount](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/Account/SavingAccount.cs) or [CurrentAccount](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/Account/CurrentAccount.cs) and returns a [IAccount](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/Account/IAccount.cs) object. The caller can work with both the instances in exactly same way abstracting thier internal details and implementation details.
 
+It also shows how to leverage a base class [AccountBase](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/AccountFactory/AccountBase.cs) to provide common fields and functionality across all derived class. This enables us to create a common abstraction among all derived classes and still make use of Factory to create instance thereby ensuring common pattern id followed by each client.
+
 ## Structural Patterns
 These patterns deals with the structure of code and classes. It highlights how different classes interact to form a larger system of classes.
 

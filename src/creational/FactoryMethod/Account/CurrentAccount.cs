@@ -2,9 +2,8 @@
 
 using FactoryMethod.AccountStore;
 
-internal class CurrentAccount : IAccount
+internal class CurrentAccount : AccountBase, IAccount
 {
-    private decimal _balance;
     private readonly IAccountStore _store;
 
     public CurrentAccount(IAccountStore store)
@@ -14,13 +13,13 @@ internal class CurrentAccount : IAccount
 
     public void Deposit(decimal amount)
     {
-        _balance += amount;
+        Balance += amount;
         _store.Save(this);
     }
 
     public decimal GetBalance()
     {
-        return _balance;
+        return Balance;
     }
 
     public void Transfer(decimal amount, IAccount toAccount)
@@ -32,7 +31,7 @@ internal class CurrentAccount : IAccount
 
     public void Withdraw(decimal amount)
     {
-        _balance -= amount;
+        Balance -= amount;
         _store.Save(this);
     }
 }
