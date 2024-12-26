@@ -19,7 +19,10 @@ Refer the entire implementation [here](https://github.com/pravinchandankhede/des
 
 ### [Factory](https://en.wikipedia.org/wiki/Factory_method_pattern)
 This pattern is used to create objects without exposing the instantiation logic to the client. The sample code demonstrate different way of implementing factory pattern.
-Refer the entire implementation [here](
+Refer the entire implementation [here](https://github.com/pravinchandankhede/designpatterns/tree/main/src/creational/FactoryMethod)
+
+This demonstrates the class [AccountFactory](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/AccountFactory/AccountFactory.cs) which creates instance of [SavingAccount](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/Account/SavingAccount.cs) or [CurrentAccount](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/Account/CurrentAccount.cs) and returns a [IAccount](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/Account/IAccount.cs) object. The caller can work with both the instances in exactly same way abstracting thier internal details and implementation details.
+
 ## Structural Patterns
 These patterns deals with the structure of code and classes. It highlights how different classes interact to form a larger system of classes.
 
