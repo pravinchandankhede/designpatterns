@@ -5,7 +5,10 @@
 /// </summary>
 public sealed class LazySingleton
 {
-    private static readonly Lazy<LazySingleton> _lazy = new Lazy<LazySingleton>(() => new LazySingleton());
+    /// <summary>
+    /// Lazy instance of this class.
+    /// </summary>
+    private static readonly Lazy<LazySingleton> _lazy = new(() => new LazySingleton());
     private static readonly DateTime _creationTime = DateTime.Now;
 
     private LazySingleton()

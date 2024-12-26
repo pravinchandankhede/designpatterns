@@ -8,7 +8,7 @@ public sealed class ThreadSafeSingleton
     /// <summary>
     /// Create a thread safe instance.
     /// </summary>
-    private static readonly ThreadSafeSingleton _instance = new ThreadSafeSingleton();
+    private static readonly ThreadSafeSingleton _instance = new();
     private static readonly DateTime _creationTime = DateTime.Now;
 
     /// <summary>

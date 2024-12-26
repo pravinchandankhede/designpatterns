@@ -1,12 +1,14 @@
 ﻿namespace Singleton;
 
+using System.Threading;
+
 /// <summary>
 /// Demostrate the creation of singleton instance using the double check feature using locking.
 /// </summary>
 public sealed class ThreadLockSingleton
 {
-    private static ThreadLockSingleton instance = null;
-    private static readonly Object _lock = new();
+    private static ThreadLockSingleton? instance = null;
+    private static readonly Lock _lock = new();
     private static DateTime _creationTime;
 
     private ThreadLockSingleton()

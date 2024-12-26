@@ -8,7 +8,7 @@ public sealed class EagerSingleton
     /// <summary>
     /// Create
     /// </summary>
-    private static readonly EagerSingleton eagerSingleton = new EagerSingleton();
+    private static readonly EagerSingleton eagerSingleton = new();
     private static readonly DateTime _creationTime = DateTime.Now;
 
     private EagerSingleton()
