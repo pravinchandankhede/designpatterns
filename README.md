@@ -1,4 +1,4 @@
-[![Unit Tests]([https://github.com/pravinchandankhede/designpatterns/actions/workflows/ci.yaml](https://github.com/pravinchandankhede/designpatterns/blob/main/.github/workflows/dotnet.yml)/badge.svg)](https://github.com/Payum/Payum/actions/workflows/ci.yaml)
+[![Unit Tests](https://github.com/pravinchandankhede/designpatterns/blob/main/.github/workflows/dotnet.yml/badge.svg)](https://github.com/pravinchandankhede/designpatterns/blob/main/.github/workflows/dotnet.yml)
 
 # Design Patterns
 
