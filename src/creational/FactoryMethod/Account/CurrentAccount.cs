@@ -2,6 +2,9 @@
 
 using FactoryMethod.AccountStore;
 
+/// <summary>
+/// Current account features
+/// </summary>
 internal class CurrentAccount : AccountBase, IAccount
 {
     private readonly IAccountStore _store;
