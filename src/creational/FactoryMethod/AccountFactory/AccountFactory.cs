@@ -4,7 +4,7 @@ using FactoryMethod.Account;
 using FactoryMethod.AccountStore;
 
 /// <summary>
-/// Actual Factory class to showcase the creation of diffeent type of IAccount.
+/// Actual Factory class to showcase the creation of different type of IAccount.
 /// </summary>
 internal class AccountFactory : IAccountFactory
 {
