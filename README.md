@@ -1,4 +1,4 @@
-[![Unit Tests](https://github.com/pravinchandankhede/designpatterns/blob/main/.github/workflows/dotnet.yml/badge.svg)](https://github.com/pravinchandankhede/designpatterns/blob/main/.github/workflows/dotnet.yml)
+[![Unit Tests](https://github.com/pravinchandankhede/designpatterns/actions/workflows/dotnet.yml/badge.svg)](https://github.com/pravinchandankhede/designpatterns/actions/workflows/dotnet.yml)
 
 # Design Patterns
 
