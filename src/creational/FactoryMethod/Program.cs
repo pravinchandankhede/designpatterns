@@ -1,6 +1,7 @@
 ﻿namespace FactoryMethod;
 
 using FactoryMethod.Account;
+using FactoryMethod.AccountFactory;
 using FactoryMethod.AccountStore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,9 +9,11 @@ internal class Program
 {
     static void Main()
     {
-        InvokeFactoryMethodPatternUsingTraditionalObjectCreation();
+        //InvokeFactoryMethodPatternUsingTraditionalObjectCreation();
 
-        InvokeFactoryMethodPatternUsingDependencyInjection();
+        //InvokeFactoryMethodPatternUsingDependencyInjection();
+
+        InvokeFactoryMethodPatternUsingReflection();
     }
 
     private static void InvokeFactoryMethodPatternUsingTraditionalObjectCreation()
@@ -76,5 +79,34 @@ internal class Program
         currentAccount.Deposit(1500);
         currentAccount.Withdraw(700);
         Console.WriteLine($"Current account Number {currentAccount.Number} Balance: {currentAccount.GetBalance()}");
+    }
+
+    private static void InvokeFactoryMethodPatternUsingReflection()
+    {
+        Console.WriteLine("Factory Method Pattern Using Reflection");
+
+        //create account store, this will be your persistance storage.
+        IAccountStore accountStore = new AccountStore.AccountStore();
+
+        //create a factory that works with a particular type of store.
+        var accountFactory = new AccountFactoryReflection(accountStore);
+
+        //ask the factory to create saving & current account.
+        var savingAccount = accountFactory.GetAccount(AccountType.Saving);
+        var currentAccount = accountFactory.GetAccount(AccountType.Current);
+
+        //save these instances in store.
+        accountStore.CreateAccount(savingAccount);
+        accountStore.CreateAccount(currentAccount);
+
+        //Perform some operations
+        savingAccount.Deposit(1000);
+        savingAccount.Withdraw(500);
+        Console.WriteLine($"Saving account Number {savingAccount.Number} Balance: {savingAccount.GetBalance()}");
+
+        currentAccount.Deposit(1500);
+        currentAccount.Withdraw(700);
+        Console.WriteLine($"Current account Number {currentAccount.Number} Balance: {currentAccount.GetBalance()}");
+
     }
 }
