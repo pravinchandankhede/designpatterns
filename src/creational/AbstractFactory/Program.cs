@@ -5,7 +5,7 @@ using AbstractFactory.Cards;
 
 internal class Program
 {
-    static void Main()
+    static void Main1()
     {
 		IPaymentFactory factory = new SavingAccountFactory();
 		IPayment payment = factory.CreatePayment();
