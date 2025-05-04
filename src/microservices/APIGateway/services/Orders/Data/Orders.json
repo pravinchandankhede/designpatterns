@@ -1,0 +1,22 @@
+[
+	{
+		"Id": 1,
+		"CustomerName": "John Doe",
+		"OrderDate": "2025-05-01T10:30:00",
+		"Items": [
+			{
+				"ProductId": 1,
+				"ProductName": "Car Battery",
+				"Quantity": 1,
+				"Price": 120.99
+			},
+			{
+				"ProductId": 2,
+				"ProductName": "Engine Oil",
+				"Quantity": 2,
+				"Price": 35.50
+			}
+		],
+		"TotalAmount": 191.99
+	}
+]
