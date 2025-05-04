@@ -1,0 +1,142 @@
+[
+	{
+		"Id": 1,
+		"Name": "Car Battery",
+		"Description": "High-performance car battery with extended life.",
+		"Price": 120.99,
+		"Category": "Electrical"
+	},
+	{
+		"Id": 2,
+		"Name": "Engine Oil",
+		"Description": "Synthetic engine oil for optimal engine performance.",
+		"Price": 35.50,
+		"Category": "Lubricants"
+	},
+	{
+		"Id": 3,
+		"Name": "Tire",
+		"Description": "All-season radial tire for passenger vehicles.",
+		"Price": 89.99,
+		"Category": "Tires"
+	},
+	{
+		"Id": 4,
+		"Name": "Brake Pads",
+		"Description": "Durable brake pads for enhanced safety.",
+		"Price": 45.00,
+		"Category": "Brakes"
+	},
+	{
+		"Id": 5,
+		"Name": "Air Filter",
+		"Description": "High-efficiency air filter for improved air intake.",
+		"Price": 15.99,
+		"Category": "Filters"
+	},
+	{
+		"Id": 6,
+		"Name": "Spark Plug",
+		"Description": "Premium spark plug for better ignition.",
+		"Price": 8.99,
+		"Category": "Ignition"
+	},
+	{
+		"Id": 7,
+		"Name": "Windshield Wiper",
+		"Description": "All-weather windshield wiper for clear visibility.",
+		"Price": 12.50,
+		"Category": "Accessories"
+	},
+	{
+		"Id": 8,
+		"Name": "Headlight Bulb",
+		"Description": "Bright and energy-efficient headlight bulb.",
+		"Price": 25.00,
+		"Category": "Lighting"
+	},
+	{
+		"Id": 9,
+		"Name": "Radiator",
+		"Description": "High-quality radiator for efficient cooling.",
+		"Price": 150.00,
+		"Category": "Cooling System"
+	},
+	{
+		"Id": 10,
+		"Name": "Fuel Pump",
+		"Description": "Reliable fuel pump for consistent fuel delivery.",
+		"Price": 200.00,
+		"Category": "Fuel System"
+	},
+	{
+		"Id": 11,
+		"Name": "Car Jack",
+		"Description": "Portable car jack for emergency tire changes.",
+		"Price": 30.00,
+		"Category": "Tools"
+	},
+	{
+		"Id": 12,
+		"Name": "Steering Wheel Cover",
+		"Description": "Comfortable and stylish steering wheel cover.",
+		"Price": 20.00,
+		"Category": "Accessories"
+	},
+	{
+		"Id": 13,
+		"Name": "Floor Mats",
+		"Description": "Durable floor mats to protect your car's interior.",
+		"Price": 40.00,
+		"Category": "Interior"
+	},
+	{
+		"Id": 14,
+		"Name": "Exhaust Muffler",
+		"Description": "High-performance exhaust muffler for reduced noise.",
+		"Price": 120.00,
+		"Category": "Exhaust"
+	},
+	{
+		"Id": 15,
+		"Name": "GPS Navigation System",
+		"Description": "Advanced GPS system with real-time traffic updates.",
+		"Price": 250.00,
+		"Category": "Electronics"
+	},
+	{
+		"Id": 16,
+		"Name": "Car Cover",
+		"Description": "Weatherproof car cover for outdoor protection.",
+		"Price": 60.00,
+		"Category": "Accessories"
+	},
+	{
+		"Id": 17,
+		"Name": "Backup Camera",
+		"Description": "Wide-angle backup camera for safer reversing.",
+		"Price": 100.00,
+		"Category": "Electronics"
+	},
+	{
+		"Id": 18,
+		"Name": "Roof Rack",
+		"Description": "Sturdy roof rack for carrying extra cargo.",
+		"Price": 180.00,
+		"Category": "Exterior"
+	},
+	{
+		"Id": 19,
+		"Name": "Car Wax",
+		"Description": "Premium car wax for a glossy finish.",
+		"Price": 15.00,
+		"Category": "Maintenance"
+	},
+	{
+		"Id": 20,
+		"Name": "Dash Cam",
+		"Description": "High-definition dash cam for recording your drives.",
+		"Price": 120.00,
+		"Category": "Electronics"
+	}
+]
