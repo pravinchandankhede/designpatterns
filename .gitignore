@@ -5,3 +5,4 @@ obj
 .vs
 /src/microservices/APIGateway/services/Products/Products.csproj.user
 /src/microservices/APIGateway/services/Orders/Orders.csproj.user
+/src/microservices/APIGateway/Gateways/ShoppingGateway/ShoppingGateway.csproj.user
