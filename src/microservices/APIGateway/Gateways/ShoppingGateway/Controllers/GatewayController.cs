@@ -1,7 +1,7 @@
 ﻿namespace ShoppingGateway.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
-using Orders.Models;
+using ShoppingGateway.Models;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -98,6 +98,11 @@ public class GatewayController : ControllerBase
 
 		//var productServiceUrl = "http://localhost:5001/api/Product"; // Replace with actual Product service URL
 
+		var options = new JsonSerializerOptions
+		{
+			PropertyNameCaseInsensitive = true
+		};
+
 		// Fetch orders
 		var orderResponse = await _httpClient.GetAsync(orderServiceUrl);
 		if (!orderResponse.IsSuccessStatusCode)
@@ -105,7 +110,8 @@ public class GatewayController : ControllerBase
 			return StatusCode((int)orderResponse.StatusCode, "Failed to fetch orders.");
 		}
 		var orderData = await orderResponse.Content.ReadAsStringAsync();
-		var orders = JsonSerializer.Deserialize<List<Order>>(orderData);
+		//var orders = JsonSerializer.Deserialize<List<Order>>(orderData);
+		var orders = JsonSerializer.Deserialize<List<Order>>(orderData, options);
 
 		// Fetch products
 		var productResponse = await _httpClient.GetAsync(productServiceUrl);
@@ -114,7 +120,7 @@ public class GatewayController : ControllerBase
 			return StatusCode((int)productResponse.StatusCode, "Failed to fetch products.");
 		}
 		var productData = await productResponse.Content.ReadAsStringAsync();
-		var products = JsonSerializer.Deserialize<List<Product>>(productData);
+		var products = JsonSerializer.Deserialize<List<Product>>(productData, options);
 
 		// Aggregate orders with product details
 		var ordersWithProducts = orders.Select(order =>

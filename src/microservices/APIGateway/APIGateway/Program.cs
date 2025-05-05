@@ -4,7 +4,7 @@ using APIGateway.Client;
 
 class Program
 {
-	static async Task Main(string[] args)
+	static async Task Main()
 	{
 		var client = new ShoppingCartClient("http://localhost:5003");
 

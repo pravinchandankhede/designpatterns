@@ -1,10 +1,15 @@
-﻿namespace Orders.Models;
+﻿namespace ShoppingGateway.Models;
 
 using System;
 using System.Collections.Generic;
 
 public class Order
 {
+	public Order()
+	{
+		Items = new List<OrderItem>();
+	}
+
 	public int Id { get; set; }
 	public string CustomerName { get; set; }
 	public DateTime OrderDate { get; set; }
@@ -14,7 +19,12 @@ public class Order
 
 public class OrderItem
 {
+	public OrderItem()
+	{
+		
+	}
 	public int ProductId { get; set; }
+	public string ProductName { get; set; }
 	public int Quantity { get; set; }
 	public decimal Price { get; set; }
 }
