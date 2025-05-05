@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 [ApiController]
 public class GatewayController : ControllerBase
 {
+	private String _productServiceUrl = "http://localhost:5001/api/";
+	private String _orderServiceUrl = "http://localhost:5000/api/";
+
 	private readonly HttpClient _httpClient;
 
 	public GatewayController(IHttpClientFactory httpClientFactory)
@@ -21,7 +24,7 @@ public class GatewayController : ControllerBase
 	[HttpGet("products")]
 	public async Task<IActionResult> GetProducts()
 	{
-		var productServiceUrl = "http://localhost:5001/api/Product";
+		var productServiceUrl = _productServiceUrl + "Product";
 		var response = await _httpClient.GetAsync(productServiceUrl);
 
 		if (!response.IsSuccessStatusCode)
@@ -37,7 +40,7 @@ public class GatewayController : ControllerBase
 	[HttpGet("orders")]
 	public async Task<IActionResult> GetOrders()
 	{
-		var orderServiceUrl = "http://localhost:5002/api/Order";
+		var orderServiceUrl = _orderServiceUrl + "Order";
 		var response = await _httpClient.GetAsync(orderServiceUrl);
 
 		if (!response.IsSuccessStatusCode)
@@ -53,7 +56,7 @@ public class GatewayController : ControllerBase
 	[HttpPost("products")]
 	public async Task<IActionResult> AddProduct([FromBody] object newProduct)
 	{
-		var productServiceUrl = "http://localhost:5001/api/Product";
+		var productServiceUrl = _productServiceUrl + "Product";
 		var content = new StringContent(JsonSerializer.Serialize(newProduct), System.Text.Encoding.UTF8, "application/json");
 		var response = await _httpClient.PostAsync(productServiceUrl, content);
 
@@ -70,7 +73,8 @@ public class GatewayController : ControllerBase
 	[HttpPost("orders")]
 	public async Task<IActionResult> AddOrder([FromBody] object newOrder)
 	{
-		var orderServiceUrl = "http://localhost:5002/api/Order";
+		var orderServiceUrl = _orderServiceUrl + "Order";
+
 		var content = new StringContent(JsonSerializer.Serialize(newOrder), System.Text.Encoding.UTF8, "application/json");
 		var response = await _httpClient.PostAsync(orderServiceUrl, content);
 
@@ -86,8 +90,13 @@ public class GatewayController : ControllerBase
 	[HttpGet("orders-with-products")]
 	public async Task<IActionResult> GetOrdersWithProducts()
 	{
-		var orderServiceUrl = "http://localhost:5002/api/Order"; // Replace with actual Order service URL
-		var productServiceUrl = "http://localhost:5001/api/Product"; // Replace with actual Product service URL
+		var orderServiceUrl = _orderServiceUrl + "Order";
+
+		//var orderServiceUrl = "http://localhost:5002/api/Order"; // Replace with actual Order service URL
+
+		var productServiceUrl = _productServiceUrl + "Product";
+
+		//var productServiceUrl = "http://localhost:5001/api/Product"; // Replace with actual Product service URL
 
 		// Fetch orders
 		var orderResponse = await _httpClient.GetAsync(orderServiceUrl);
