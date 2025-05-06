@@ -1,5 +1,22 @@
 [![Unit Tests](https://github.com/pravinchandankhede/designpatterns/actions/workflows/dotnet.yml/badge.svg)](https://github.com/pravinchandankhede/designpatterns/actions/workflows/dotnet.yml)
 
+## Table of Contents
+
+- [Design Patterns](#design-patterns)
+  - [Creational Patterns](#creational-patterns)
+    - [Singleton](#singleton)
+    - [Factory](#factory)
+      - [Traditional Factory](#traditonal-factory)
+      - [Factory using Dependency Injection](#factory-using-dependency-injection)
+      - [Factory using Reflection](#factory-using-reflection)
+  - [Structural Patterns](#structural-patterns)
+  - [Behavioral Patterns](#behavioral-patterns)
+- [Microservices Design Patterns](#microservices-design-patterns)
+  - [API Gateway Pattern](#api-gateway-pattern)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [License](#license)
+
 # Design Patterns
 
 This repo contains the implementation of various design patterns implementation using C#. It also demonstrates posibilities to implement same pattern in different ways
@@ -40,8 +57,20 @@ These patterns deals with the structure of code and classes. It highlights how d
 ## Behavioral Patterns
 These patterns deals with the interaction and behavioral responsibilities of classes involved in the overall design.
 
+## Microservices Design Patterns
+
+### API Gateway Pattern
+This project targets `.NET 8` and implements a microservices architecture using the **API Gateway Pattern**. The solution includes core services (`Order` and `Products`) exposed through an API Gateway (`Shopping Gateway`). The API Gateway is consumed by the `APIGatewayClient` project, which acts as the client application.
+
+[Implementation](https://github.com/pravinchandankhede/designpatterns/tree/main/src/microservices/APIGateway)
+
 ## Installation
 You can fork the repository at your local machine and run the code using Visual Studio or any other IDE of your choice.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/pravinchandankhede/designpatterns/blob/main/LICENSE). You are free to use, modify, and distribute this project in accordance with the terms of the license.
