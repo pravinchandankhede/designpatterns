@@ -17,16 +17,26 @@
                     {
                         "name": "subnetA",
                         "properties": {
-                            "addressPrefix": "10.0.1.0/24"
+                            "addressPrefix": "10.0.1.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'nsgA')]"
+                            }
                         }
                     },
                     {
                         "name": "subnetB",
                         "properties": {
-                            "addressPrefix": "10.0.2.0/24"
+                            "addressPrefix": "10.0.2.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'nsgB')]"
+                            }
                         }
                     }
                 ]
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
             }
         },
         {
@@ -37,11 +47,11 @@
             "properties": {
                 "securityRules": [
                     {
-                        "name": "AllowHttpsIn",
+                        "name": "Allow-HTTP-Inbound",
                         "properties": {
                             "protocol": "Tcp",
                             "sourcePortRange": "*",
-                            "destinationPortRange": "443",
+                            "destinationPortRange": "80",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
                             "access": "Allow",
@@ -50,11 +60,24 @@
                         }
                     },
                     {
-                        "name": "AllowHttpsOut",
+                        "name": "Allow-AGW-Inbound-65200-65535",
                         "properties": {
                             "protocol": "Tcp",
                             "sourcePortRange": "*",
-                            "destinationPortRange": "443",
+                            "destinationPortRange": "65200-65535",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "Allow-HTTP-Outbound",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
                             "access": "Allow",
@@ -63,6 +86,10 @@
                         }
                     }
                 ]
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
             }
         },
         {
@@ -73,11 +100,11 @@
             "properties": {
                 "securityRules": [
                     {
-                        "name": "AllowHttpsIn",
+                        "name": "Allow-HTTP-Inbound",
                         "properties": {
                             "protocol": "Tcp",
                             "sourcePortRange": "*",
-                            "destinationPortRange": "443",
+                            "destinationPortRange": "80",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
                             "access": "Allow",
@@ -86,11 +113,24 @@
                         }
                     },
                     {
-                        "name": "AllowHttpsOut",
+                        "name": "Allow-AGW-Inbound-65200-65535",
                         "properties": {
                             "protocol": "Tcp",
                             "sourcePortRange": "*",
-                            "destinationPortRange": "443",
+                            "destinationPortRange": "65200-65535",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "Allow-HTTP-Outbound",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
                             "access": "Allow",
@@ -99,6 +139,42 @@
                         }
                     }
                 ]
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-06-01",
+            "name": "publicIP",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "Static"
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-06-01",
+            "name": "publicIPB",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "Static"
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
             }
         },
         {
@@ -124,10 +200,10 @@
                 ],
                 "frontendIPConfigurations": [
                     {
-                        "name": "appGatewayFrontendIpConfigA",
+                        "name": "appGatewayFrontendIPConfigA",
                         "properties": {
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'appGatewayPublicIpA')]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'publicIP')]"
                             }
                         }
                     }
@@ -136,7 +212,7 @@
                     {
                         "name": "appGatewayFrontendPortA",
                         "properties": {
-                            "port": 443
+                            "port": 80
                         }
                     }
                 ],
@@ -146,7 +222,7 @@
                         "properties": {
                             "backendAddresses": [
                                 {
-                                    "ipAddress": "10.0.2.4"
+                                    "ipAddress": "[parameters('backendIP1')]"
                                 }
                             ]
                         }
@@ -156,11 +232,9 @@
                     {
                         "name": "appGatewayBackendHttpSettingsA",
                         "properties": {
-                            "port": 443,
-                            "protocol": "Https",
+                            "port": 80,
+                            "protocol": "Http",
                             "cookieBasedAffinity": "Disabled",
-                            "pickHostNameFromBackendAddress": false,
-                            "probeEnabled": true,
                             "requestTimeout": 20
                         }
                     }
@@ -170,12 +244,12 @@
                         "name": "appGatewayHttpListenerA",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', 'appGatewayA', 'appGatewayFrontendIpConfigA')]"
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', 'appGatewayA', 'appGatewayFrontendIPConfigA')]"
                             },
                             "frontendPort": {
                                 "id": "[resourceId('Microsoft.Network/applicationGateways/frontendPorts', 'appGatewayA', 'appGatewayFrontendPortA')]"
                             },
-                            "protocol": "Https",
+                            "protocol": "Http"
                         }
                     }
                 ],
@@ -189,10 +263,65 @@
                             "defaultBackendHttpSettings": {
                                 "id": "[resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', 'appGatewayA', 'appGatewayBackendHttpSettingsA')]"
                             },
-                            "pathRules": []
+                            "pathRules": [
+                                {
+                                    "name": "pathRuleA",
+                                    "properties": {
+                                        "paths": [
+                                            "/api/*"
+                                        ],
+                                        "backendAddressPool": {
+                                            "id": "[resourceId('Microsoft.Network/applicationGateways/backendAddressPools', 'appGatewayA', 'appGatewayBackendPoolA')]"
+                                        },
+                                        "backendHttpSettings": {
+                                            "id": "[resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', 'appGatewayA', 'appGatewayBackendHttpSettingsA')]"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "requestRoutingRules": [
+                    {
+                        "name": "ruleA",
+                        "properties": {
+                            "ruleType": "Basic",
+                            "httpListener": {
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/httpListeners', 'appGatewayA', 'appGatewayHttpListenerA')]"
+                            },
+                            "backendAddressPool": {
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/backendAddressPools', 'appGatewayA', 'appGatewayBackendPoolA')]"
+                            },
+                            "backendHttpSettings": {
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', 'appGatewayA', 'appGatewayBackendHttpSettingsA')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "appGatewayHealthProbe",
+                        "properties": {
+                            "protocol": "Http",
+                            "path": "/",
+                            "interval": 30,
+                            "timeout": 30,
+                            "unhealthyThreshold": 3,
+                            "pickHostNameFromBackendHttpSettings": true,
+                            "minServers": 0,
+                            "match": {
+                                "statusCodes": [
+                                    200
+                                ]
+                            }
                         }
                     }
                 ]
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
             }
         },
         {
@@ -218,12 +347,20 @@
                 ],
                 "frontendIPConfigurations": [
                     {
-                        "name": "appGatewayFrontendIpConfigB",
+                        "name": "appGatewayFrontendIPConfigB",
                         "properties": {
-                            "privateIPAddress": "10.0.2.5",
+                            "privateIPAddress": "10.0.2.4",
                             "privateIPAllocationMethod": "Static",
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'myVNet', 'subnetB')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "appGatewayFrontendPublicIPConfigB",
+                        "properties": {
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'publicIPB')]"
                             }
                         }
                     }
@@ -232,7 +369,7 @@
                     {
                         "name": "appGatewayFrontendPortB",
                         "properties": {
-                            "port": 443
+                            "port": 80
                         }
                     }
                 ],
@@ -242,7 +379,7 @@
                         "properties": {
                             "backendAddresses": [
                                 {
-                                    "fqdn": "mybackendapi.azurewebsites.net"
+                                    "ipAddress": "[parameters('backendIP2')]"
                                 }
                             ]
                         }
@@ -252,11 +389,9 @@
                     {
                         "name": "appGatewayBackendHttpSettingsB",
                         "properties": {
-                            "port": 443,
-                            "protocol": "Https",
+                            "port": 80,
+                            "protocol": "Http",
                             "cookieBasedAffinity": "Disabled",
-                            "pickHostNameFromBackendAddress": false,
-                            "probeEnabled": true,
                             "requestTimeout": 20
                         }
                     }
@@ -266,65 +401,61 @@
                         "name": "appGatewayHttpListenerB",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', 'appGatewayB', 'appGatewayFrontendIpConfigB')]"
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', 'appGatewayB', 'appGatewayFrontendIPConfigB')]"
                             },
                             "frontendPort": {
                                 "id": "[resourceId('Microsoft.Network/applicationGateways/frontendPorts', 'appGatewayB', 'appGatewayFrontendPortB')]"
                             },
-                            "protocol": "Https",
-                            "sslCertificate": null
+                            "protocol": "Http"
+                        }
+                    }
+                ],
+                "requestRoutingRules": [
+                    {
+                        "name": "ruleB",
+                        "properties": {
+                            "ruleType": "Basic",
+                            "httpListener": {
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/httpListeners', 'appGatewayB', 'appGatewayHttpListenerB')]"
+                            },
+                            "backendAddressPool": {
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/backendAddressPools', 'appGatewayB', 'appGatewayBackendPoolB')]"
+                            },
+                            "backendHttpSettings": {
+                                "id": "[resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', 'appGatewayB', 'appGatewayBackendHttpSettingsB')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "appGatewayHealthProbe",
+                        "properties": {
+                            "protocol": "Http",
+                            "path": "/",
+                            "interval": 30,
+                            "timeout": 30,
+                            "unhealthyThreshold": 3,
+                            "pickHostNameFromBackendHttpSettings": true,
+                            "minServers": 0,
+                            "match": {
+                                "statusCodes": [
+                                    200
+                                ]
+                            }
                         }
                     }
                 ]
-            }
-        },
-        {
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2020-06-01",
-            "name": "appGatewayPublicIpA",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "publicIPAllocationMethod": "Dynamic"
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites",
-            "apiVersion": "2020-06-01",
-            "name": "myAngularApp",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'myAppServicePlan')]",
-                "siteConfig": {
-                    "appSettings": [
-                        {
-                            "name": "WEBSITE_RUN_FROM_PACKAGE",
-                            "value": "https://myangularapp.zip"
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites",
-            "apiVersion": "2020-06-01",
-            "name": "myBackendApi",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'myAppServicePlan')]",
-                "siteConfig": {
-                    "appSettings": [
-                        {
-                            "name": "WEBSITE_RUN_FROM_PACKAGE",
-                            "value": "https://mybackendapi.zip"
-                        }
-                    ]
-                }
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
             }
         },
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2020-06-01",
-            "name": "myAppServicePlan",
+            "name": "appServicePlan",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "S1",
@@ -332,8 +463,76 @@
                 "capacity": 1
             },
             "properties": {
-                "reserved": false
+                "reserved": "false"
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-06-01",
+            "name": "angularFrontend062024",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', 'appServicePlan')]"
+            ],
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'appServicePlan')]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "WEBSITE_RUN_FROM_PACKAGE",
+                            "value": "https://path-to-your-angular-app-package.zip"
+                        }
+                    ]
+                }
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-06-01",
+            "name": "backendAPI062024",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', 'appServicePlan')]"
+            ],
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'appServicePlan')]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "WEBSITE_RUN_FROM_PACKAGE",
+                            "value": "https://path-to-your-backend-api-package.zip"
+                        }
+                    ]
+                }
+            },
+            "tags": {
+                "environment": "production",
+                "project": "app_gateway_chaining"
             }
         }
-    ]
+    ],
+    "parameters": {
+        "backendIP1": {
+            "type": "string",
+            "defaultValue": "10.0.2.4",
+            "metadata": {
+                "description": "IP address of the first backend server"
+            }
+        },
+        "backendIP2": {
+            "type": "string",
+            "defaultValue": "10.0.2.5",
+            "metadata": {
+                "description": "IP address of the second backend server"
+            }
+        }
+    }
 }
