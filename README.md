@@ -9,6 +9,7 @@
       - [Traditional Factory](#traditonal-factory)
       - [Factory using Dependency Injection](#factory-using-dependency-injection)
       - [Factory using Reflection](#factory-using-reflection)
+    - [Builder](#builder)
   - [Structural Patterns](#structural-patterns)
   - [Behavioral Patterns](#behavioral-patterns)
 - [Microservices Design Patterns](#microservices-design-patterns)
@@ -38,6 +39,7 @@ Refer the entire implementation [here](https://github.com/pravinchandankhede/des
 
 ### [Factory](https://en.wikipedia.org/wiki/Factory_method_pattern)
 This pattern is used to create objects without exposing the instantiation logic to the client. The sample code demonstrate different way of implementing factory pattern.
+
 Refer the entire implementation [here](https://github.com/pravinchandankhede/designpatterns/tree/main/src/creational/FactoryMethod).
 
 #### Traditonal Factory
@@ -51,6 +53,32 @@ The class [AccountFactoryReflection](https://github.com/pravinchandankhede/desig
 
 It also shows how to leverage a base class [AccountBase](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/AccountFactory/AccountBase.cs) to provide common fields and functionality across all derived class. This enables us to create a common abstraction among all derived classes and still make use of Factory to create instance thereby ensuring common pattern id followed by each client.
 
+
+### [Builder](https://en.wikipedia.org/wiki/Builder_pattern)
+The Builder pattern is used to construct complex objects step by step. It separates the construction of a complex object from its representation, allowing the same construction process to create different representations.
+
+This repository includes a sample [Builder project](src/creational/Builder/) that demonstrates how to use the Builder pattern to create a restaurant order in a flexible and readable way.
+
+#### Example Usage
+
+```csharp
+IOrderBuilder orderBuilder = new OrderBuilder();
+Order order = orderBuilder
+    .SetCustomerName("John Doe")
+    .SetDeliveryAddress("123 Main St")
+    .AddItem("Desert", 2)
+    .AddItem("Icecream", 1)
+    .Build();
+
+Console.WriteLine(order);
+```
+
+#### Key Classes
+- `Order`: Represents the final order object.
+- `IOrderBuilder`: Interface for the builder.
+- `OrderBuilder`: Concrete builder implementing the step-by-step construction of an order.
+
+This approach makes it easy to add or modify order details without creating complex constructors or exposing internal object structure.
 ## Structural Patterns
 These patterns deals with the structure of code and classes. It highlights how different classes interact to form a larger system of classes.
 
