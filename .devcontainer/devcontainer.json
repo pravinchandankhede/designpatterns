@@ -1,0 +1,30 @@
+{
+  "name": "Full Stack Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2.0",
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:1": {
+      "version": "9.0"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "visualstudioexptteam.vscodeintellicode-csharp",        
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "angular.ng-template",
+        "ms-vscode.vscode-typescript-next",        
+        "davidanson.vscode-markdownlint",
+        "bierner.markdown-mermaid",
+        "github.copilot",
+        "github.copilot-chat"
+      ]
+    }
+  },
+  "postCreateCommand": "dotnet --version && python --version && node --version"
+}
