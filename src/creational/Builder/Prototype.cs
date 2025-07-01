@@ -50,7 +50,7 @@ public class ContractDocument : LegalDocument
 
 class Program
 {
-    static void Main()
+    static void Main1()
     {
         // Create prototype NDA
         LegalDocument ndaTemplate = new NDADocument(
