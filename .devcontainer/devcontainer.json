@@ -26,5 +26,5 @@
       ]
     }
   },
-  "postCreateCommand": "dotnet --version && python --version && node --version"
+  "postCreateCommand": "dotnet --version && node --version"
 }
