@@ -10,6 +10,7 @@
       - [Factory using Dependency Injection](#factory-using-dependency-injection)
       - [Factory using Reflection](#factory-using-reflection)
     - [Builder](#builder)
+    - [Prototype](#prototype)
   - [Structural Patterns](#structural-patterns)
   - [Behavioral Patterns](#behavioral-patterns)
 - [Microservices Design Patterns](#microservices-design-patterns)
@@ -53,7 +54,6 @@ The class [AccountFactoryReflection](https://github.com/pravinchandankhede/desig
 
 It also shows how to leverage a base class [AccountBase](https://github.com/pravinchandankhede/designpatterns/blob/main/src/creational/FactoryMethod/AccountFactory/AccountBase.cs) to provide common fields and functionality across all derived class. This enables us to create a common abstraction among all derived classes and still make use of Factory to create instance thereby ensuring common pattern id followed by each client.
 
-
 ### [Builder](https://en.wikipedia.org/wiki/Builder_pattern)
 The Builder pattern is used to construct complex objects step by step. It separates the construction of a complex object from its representation, allowing the same construction process to create different representations.
 
@@ -79,6 +79,21 @@ Console.WriteLine(order);
 - `OrderBuilder`: Concrete builder implementing the step-by-step construction of an order.
 
 This approach makes it easy to add or modify order details without creating complex constructors or exposing internal object structure.
+
+### [Prototype](https://en.wikipedia.org/wiki/Prototype_pattern)
+The Prototype pattern is used to create new objects by copying an existing object, known as the prototype. This is useful when the cost of creating a new instance of an object is more expensive than copying an existing one. This pattern allows for dynamic object creation without needing to know the exact class of the object being created.
+
+This repository includes a sample [Prototype project](src/creational/Prototype/) that demonstrates how to use the Prototype pattern to clone objects.
+#### Example Usage
+
+```csharp
+LegalDocument original = new LegalDocument("NDA", "Content");
+LegalDocument clientA = original.Clone();
+LegalDocument clientB = original.Clone();
+Console.WriteLine($"Original: {original.Name}, Clone: {clone.Name}");
+```
+
+
 ## Structural Patterns
 These patterns deals with the structure of code and classes. It highlights how different classes interact to form a larger system of classes.
 
