@@ -8,7 +8,7 @@ using System.Threading;
 public sealed class ThreadLockSingleton
 {
     private static ThreadLockSingleton? instance = null;
-    private static readonly Lock _lock = new();
+    private static readonly Object _lock = new();
     private static DateTime _creationTime;
 
     private ThreadLockSingleton()
