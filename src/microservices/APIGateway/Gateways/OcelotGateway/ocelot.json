@@ -1,4 +1,7 @@
 {
+	"GlobalConfiguration": {
+		"BaseUrl": "http://localhost:5003"		
+	},
 	"Routes": [
 		{
 			"DownstreamPathTemplate": "/api/order/{everything}",
@@ -6,26 +9,26 @@
 			"DownstreamHostAndPorts": [
 				{
 					"Host": "localhost",
-					"Port": 5001
+					"Port": 5000
 				}
 			],
 			"UpstreamPathTemplate": "/orders/{everything}",
-			"UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+			"UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+			"SwaggerKey": "OrderService"
 		},
 		{
-			"DownstreamPathTemplate": "/api/products/{everything}",
+			"DownstreamPathTemplate": "/api/product/{everything}",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
 					"Host": "localhost",
-					"Port": 5002
+					"Port": 5001
 				}
 			],
 			"UpstreamPathTemplate": "/products/{everything}",
-			"UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+			"UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+			"SwaggerKey": "ProductService"
 		}
-	],
-	"GlobalConfiguration": {
-		"BaseUrl": "https://localhost:7123"
-	}
+	]
+
 }

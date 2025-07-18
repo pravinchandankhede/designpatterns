@@ -105,6 +105,10 @@ These patterns deals with the interaction and behavioral responsibilities of cla
 ### API Gateway Pattern
 This project targets `.NET 8` and implements a microservices architecture using the **API Gateway Pattern**. The solution includes core services (`Order` and `Products`) exposed through an API Gateway (`Shopping Gateway`). The API Gateway is consumed by the `APIGatewayClient` project, which acts as the client application.
 
+It provides two implementations of the API Gateway:
+1. **Shopping Gateway**: This shows the implementation using the code approach. In this approach, the API Gateway is implemented as an explicit controller that routes requests to the `Order` and `Products` services.
+2. **Ocelot Gateway**: This shows the implementation using the Ocelot library. In this approach, the API Gateway is implemented using Ocelot, which provides a more declarative way to configure routing and service discovery.
+
 [Implementation](https://github.com/pravinchandankhede/designpatterns/tree/main/src/microservices/APIGateway)
 
 ## Installation

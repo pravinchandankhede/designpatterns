@@ -14,8 +14,12 @@ The **API Gateway Pattern** is used to provide a single entry point for multiple
    - Handles operations related to orders, such as creating, retrieving, and managing orders.  
 2. **Products Service**  
    - Manages product-related operations, such as retrieving product details and inventory.  
-3. **Shopping Gateway**  
-   - Acts as the API Gateway, routing client requests to the appropriate services (`Order` and `Products`).  
+3. **Gateways**  
+   Provides 2 types of gateways:
+   - **Shopping Gateway**  
+	 - This shows the implementation using the code approach. In this approach, the API Gateway is implemented as a explicit controller that routes requests to the `Order` and `Products` services.
+   - **Ocelot Gateway**
+	 - This shows the implementation using the Ocelot library. In this approach, the API Gateway is implemented using Ocelot, which provides a more declarative way to configure routing and service discovery.   
 4. **APIGatewayClient**  
    - A client application that interacts with the `Shopping Gateway` to consume the services.  
 
