@@ -116,6 +116,8 @@ These patterns deal with the interaction and behavioral responsibilities of clas
 
 The Strategy Pattern enables selecting an algorithm or behavior at runtime. In the oil refinery domain, it allows switching between different refining processes (Hydrocracking, FCC, Coking) based on crude oil properties and market needs.
 
+This repository includes a sample [Strategy Pattern project](src/behavioral/StrategyPattern/) that demonstrates how to implement the Strategy Pattern in an oil refinery context.
+
 **Key Classes:**
 
 - `OilRefinery`: Context class that manages the refining process and strategy selection.
