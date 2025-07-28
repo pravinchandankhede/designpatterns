@@ -112,7 +112,7 @@ These patterns deals with the structure of code and classes. It highlights how d
 
 These patterns deal with the interaction and behavioral responsibilities of classes involved in the overall design.
 
-### Strategy Pattern
+### [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern)
 
 The Strategy Pattern enables selecting an algorithm or behavior at runtime. In the oil refinery domain, it allows switching between different refining processes (Hydrocracking, FCC, Coking) based on crude oil properties and market needs.
 
@@ -160,7 +160,7 @@ Processing Cost: $155,000.00
 
 ## Microservices Design Patterns
 
-### API Gateway Pattern
+### [API Gateway Pattern](https://en.wikipedia.org/wiki/API_gateway)
 
 This project targets `.NET 8` and implements a microservices architecture using the **API Gateway Pattern**. The solution includes core services (`Order` and `Products`) exposed through an API Gateway (`Shopping Gateway`). The API Gateway is consumed by the `APIGatewayClient` project, which acts as the client application.
 
